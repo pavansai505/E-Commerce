@@ -1,0 +1,5 @@
+const server=require('../app')
+const {serverConfig}=require('../config').appConfig
+server.listen(serverConfig.port,()=>{
+    console.log("server running on port",serverConfig.port);
+})

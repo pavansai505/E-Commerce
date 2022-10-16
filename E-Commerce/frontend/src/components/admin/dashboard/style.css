@@ -1,0 +1,9 @@
+.bt1{
+    width: 20vw;
+    height:10vh;
+    margin:5vh 5vh;
+    min-width: 200px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    font-weight: bolder;
+
+}

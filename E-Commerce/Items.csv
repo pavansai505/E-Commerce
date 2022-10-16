@@ -1,0 +1,15 @@
+productId,cost,features,productName,category,stock,brand,description,image
+1,500,safety Rails,Bunk Bed,furniture,20,A1,cushioned matresses,http://localhost:8010/images/bed1.jpeg
+2,600,convertible,Sliegh Bed,furniture,25,A2,safe and cozy,http://localhost:8010/images/bed2.jpeg
+3,700,made of solid wood,Morris Chair,furniture,30,A3,Lumbar support,http://localhost:8010/images/chair_imp.jpg
+4,800,made of plastic,Papasan Chair,furniture,35,A4,used to have head rest,http://localhost:8010/images/chair_imp2.jpg
+5,900,made of marble,Panton Chair,furniture,40,A5,Ancient one,http://localhost:8010/images/chair_imp3.jpg
+6,1000, 5 seated dining table,Triclinium,furniture,45,A6,make your meal ,http://localhost:8010/images/diningtable.jpeg
+7,1100,Can be rotated,Aeron Chair,furniture,50,A7,used at desk in the office,http://localhost:8010/images/officechair.jpeg
+8,1200,Adaptability,Recliner,furniture,55,A8,used to have rest for the arms,http://localhost:8010/images/recliner.jpg
+9,1300,spacious,Hopscotch Shoerack,furniture,60,A9,solidly constructed with wood,http://localhost:8010/images/shoerack.jpeg
+10,250,used for packing,Hot Boxes,kitchen,30,A1,pack meal,http://localhost:8010/images/boxes_set.png
+11,1500,to iron,Launderette,electricals,50,A1,irons,http://localhost:8010/images/ironbox.png
+12,750,serves,Ceramic Plates,kitchen,20,A1,serve,http://localhost:8010/images/plates_set.png
+13,3000,seating,Squab,furniture,30,A1,seating,http://localhost:8010/images/sofaset.png
+14,10000,seeing,Tv,electricals,20,A1,Tv,http://localhost:8010/images/Tv.png

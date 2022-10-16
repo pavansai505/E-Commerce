@@ -1,0 +1,31 @@
+openapi: 3.0.0
+info:
+  title: BulkUpload
+  description: An api to access your Routes
+  version: 1.0.0
+servers: 
+  - url: http://localhost:8020
+  
+          
+paths:
+  /bulkUpload:
+    post:
+      summary: To BulkUpload a csv file.
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: bulk file uploaded
+        
+   
+  
+  
+          
+  

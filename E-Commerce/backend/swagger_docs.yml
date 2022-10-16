@@ -1,0 +1,590 @@
+openapi: 3.0.0
+info:
+  title: Shop For Home
+  description: An api to access your Routes
+  version: 1.0.0
+servers: 
+  - url: http://localhost:8010
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  
+          
+paths:
+  /api/admin/signup:
+    post:
+      summary: Create a new admin.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                adminId:
+                  type : string
+                adminName:
+                  type : string
+                adminMail:
+                  type : string
+                password : 
+                  type : string
+              required :
+                - adminId
+                - adminName
+                - adminMail
+                - password
+                
+      responses:
+        "201" : 
+          description : created
+  /api/admin/signin:
+    post:
+      summary: Signin an existing admin.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+
+              type: object
+              properties:
+                adminId:
+                  type : string
+                adminName:
+                  type : string
+                adminMail:
+                  type : string
+                password : 
+                  type : string
+              required :
+                - adminId
+                - adminName
+                - adminMail
+                - password
+                
+      responses:
+        "201" : 
+          description : Signin success
+  /api/admin/:
+    get:
+      summary: Get all admins 
+      responses:
+        "200":
+          description: got admins information
+  /api/admin/getUsers:
+    get:
+      summary: Get all users
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: got all users information
+  /api/admin/addUser:
+    post:
+      summary: Adding user by admin 
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type : string
+                userName:
+                  type : string
+                userMail:
+                  type : string
+                password : 
+                  type : string
+                cartList :
+                  type : array
+                  items:
+                    type: object
+                wishList:
+                  type : array
+                  items:
+                    type: object
+                coupons:
+                  type : array
+                  items:
+                    type: object
+              required :
+                - userId
+                - userName
+                - userMail
+                - password
+                
+      responses:
+        "201" : 
+          description : user added successfully
+  /api/admin/deleteUser/{userId}:
+    delete:
+      summary: deleteing user by admin
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: userId
+          schema:
+            type: string
+          required: true
+          # security:
+          #   - bearerAuth: []
+          # schema:
+          #   type: string
+          #   required: true
+      responses:
+        "200":
+          description: user deleted
+  /api/admin/updateUser/{userId}:
+    put:
+      summary: update user by admin.
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: userId
+          schema:
+            type: string
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type : string
+                userName:
+                  type : string
+                userMail:
+                  type : string
+                password : 
+                  type : string
+                cartList:
+                  type : array
+                  items:
+                    type: number
+                wishList:
+                  type : array
+                  items:
+                    type: number
+                coupons:
+                  type : array
+                  items:
+                    type: number
+              required :
+                - userId
+                - userName
+                - userMail
+                - password
+                
+      responses:
+        "201" : 
+          description : user updated successfully
+  /api/admin/product/addItem:
+    post:
+      summary: adding item by admin.
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                productId:
+                  type : string
+                cost:
+                  type : string
+                features:
+                  type : string
+                productName : 
+                  type : string
+                category:
+                  type : string
+                stock:
+                  type : number
+                brand:
+                  type : string
+                description:
+                  type : string
+                image:
+                  type : string
+              required :
+                - productId
+                - cost
+                - features
+                - productName
+                - category
+                - stock
+                - brand
+                - description
+                - image
+                
+      responses:
+        "201" : 
+          description : product added successfully
+ 
+  /api/admin/product/delete/{productId}:
+    delete:
+      summary: deleteing product by admin
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: productId
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: product deleted
+  /api/admin/product/getItems:
+    get:
+      summary: get all products
+      responses:
+        "200":
+          description: got all items
+  /api/admin/product/update/{productId}:
+    put:
+      summary: update product
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: productId
+          schema:
+            type: string
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                productId:
+                  type : string
+                cost:
+                  type : string
+                features:
+                  type : string
+                productName : 
+                  type : string
+                category:
+                  type : string
+                stock:
+                  type : number
+                brand:
+                  type : string
+                description:
+                  type : string
+                image:
+                  type : string
+              required :
+                - productId
+                - cost
+                - features
+                - productName
+                - category
+                - stock
+                - brand
+                - description
+                - image
+                
+      responses:
+        "201" : 
+          description : product updated successfully
+ 
+  /api/admin/order/getOrders:
+    get:
+      summary: to get orders
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: got orders information
+  /api/admin/sales/getSales:
+    get:
+      summary: to get sales
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: got sales information
+          
+  #user routes
+  
+  /api/user/signup:
+    post:
+      summary: Signup a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type : string
+                userName:
+                  type : string
+                userMail:
+                  type : string
+                password : 
+                  type : string
+                cartList:
+                  type : array
+                  items:
+                    type: number
+                wishList:
+                  type : array
+                  items:
+                    type: number
+                coupons:
+                  type : array
+                  items:
+                    type: number
+              required :
+                - userId
+                - userName
+                - userMail
+                - password
+                
+      responses:
+        "201" : 
+          description : user signup success
+  /api/user/signin:
+    post:
+      summary: Signin an existing user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type : string
+                userName:
+                  type : string
+                userMail:
+                  type : string
+                password : 
+                  type : string
+                cartList:
+                  type : array
+                  items:
+                    type: number
+                wishList:
+                  type : array
+                  items:
+                    type: number
+                coupons:
+                  type : array
+                  items:
+                    type: number
+              required :
+                - userId
+                - userName
+                - userMail
+                - password
+                
+      responses:
+        "201" : 
+          description : user signin success
+  /api/user/:
+    get:
+    #auth required
+      summary: to get all users
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: got all users information
+  /api/user/getUser/{userId}:
+    get:
+    #auth required
+    
+      summary: to get single user by id
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: userId
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: user info displayed
+  /api/user/product/getItems:
+    get:
+      summary: to get all items
+      responses:
+        "200":
+          description: got all items information
+  /api/user/product/addToWishList/{userId}:
+    post:
+      #auth required
+      summary: to add product to wishlist
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: userId
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: product added to wishlist
+  /api/user/product/removeFromWishList/{productId}/{userId}:
+    delete:
+      summary: to remove a product
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: productId
+          schema:
+            type: string
+          required: true
+
+        - in: path
+          name: userId
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: item deleted from wishlist
+  /api/user/product/addToCart/{userId}:
+    post:
+      summary: Add to cart
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: userId
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: item added to cart
+  /api/user/product/removeFromCart/{productId}/{userId}:
+    delete:
+      summary: remove from cart
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: userId
+          schema:
+            type: string
+          required: true
+      
+        - in: path
+          name: productId
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: item removed from cart 
+  /api/user/order/placeOrder:
+    post:
+      #auth required
+      summary: place a order
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                productId:
+                  type : string
+                cost:
+                  type : string
+                productName:
+                  type : string
+                quantity : 
+                  type : string
+                userId:
+                  type : string
+                userName:
+                  type : string
+                address:
+                  type : string
+              required :
+                - productId
+                - cost
+                - productName
+                - quantity
+                - userId
+                - userName
+                - address
+                
+      responses:
+        "201" : 
+          description : order placed successfully
+  /api/user/sales/modifySales:
+    post:
+    #auth required
+      summary: modify sales
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                productId:
+                  type : string
+                productName:
+                  type : string
+                sold : 
+                  type : string
+                cost:
+                  type : string
+              required :
+                - productId
+                - cost
+                - productName
+                - sold
+                
+                
+      responses:
+        "201" : 
+          description : sales modified successfully
+    
+
+    
+    
+      
+      
+      
+  
+        
+      
+    
+      
+      
+
